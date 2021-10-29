@@ -32,4 +32,12 @@ public class Unit {
         this.phoneNumber = phoneNumber;
     }
 
+    @Override
+    public String toString() {
+        return "Unit{" +
+                "id_unit=" + id_unit +
+                ", unitName='" + unitName + '\'' +
+                ", phoneNumber='" + phoneNumber + '\'' +
+                '}';
+    }
 }

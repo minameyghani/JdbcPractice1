@@ -57,4 +57,15 @@ public class Employee {
     public void setUnit(Unit unit) {
         this.unit = unit;
     }
+
+    @Override
+    public String toString() {
+        return "Employee{" +
+                "employeeName='" + employeeName + '\'' +
+                ", employeeFamily='" + employeeFamily + '\'' +
+                ", employeeCode='" + employeeCode + '\'' +
+                ", birthDate='" + birthDate + '\'' +
+                ", unit=" + unit.getUnitName() +
+                '}';
+    }
 }
