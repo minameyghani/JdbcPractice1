@@ -11,8 +11,8 @@ public class Main {
         String u = unitDao.findById(1);
         System.out.println(u);*/
         EmployeeDao employeeDao = new EmployeeDao();
-        Employee s = employeeDao.findByName("sara");
-        System.out.println(s.toString());
+        String s  = employeeDao.findByFamily("zamani").getEmployeeFamily();
+        employeeDao.updateFamily(s,"samiei");
 
 
     }

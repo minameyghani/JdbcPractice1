@@ -36,6 +36,7 @@ public class UnitDao {
                 u.setUnitName(result.getString(2));
                 u.setPhoneNumber(result.getString(3));
             }
+            connection.close();
             return u;
 
         } catch (SQLException exception) {
@@ -54,6 +55,7 @@ public class UnitDao {
                 u.setUnitName(result.getString(1));
 
             }
+            connection.close();
             return u.getUnitName();
 
         } catch (SQLException exception) {
