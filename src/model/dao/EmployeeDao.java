@@ -2,6 +2,7 @@ package model.dao;
 
 import model.entity.ConnectionManager;
 import model.entity.Employee;
+import model.entity.Unit;
 
 import java.sql.*;
 
@@ -177,6 +178,39 @@ public class EmployeeDao {
             statement.setInt(2,id);
             statement.executeUpdate();
             System.out.println("updated employee family");
+            connection.close();
+        } catch (SQLException exception) {
+            exception.printStackTrace();
+        }
+    }
+
+    public void deleteByCode(String code){
+        Connection connection = ConnectionManager.getConnection();
+        try {
+            PreparedStatement statement = connection.prepareStatement("DELETE FROM `employee` As e WHERE e.code = ?");
+            statement.setString(1,code);
+            int i = statement.executeUpdate();
+            System.out.println(i + " employee deleted");
+            connection.close();
+        } catch (SQLException exception) {
+            exception.printStackTrace();
+        }
+    }
+
+    public void countPerUnit(String unitName){
+        Unit unit = unitDao.findByName(unitName);
+        String name = unit.getUnitName();
+        int id_unit = unit.getId_unit();
+        Connection connection = ConnectionManager.getConnection();
+        try {
+            PreparedStatement statement = connection.prepareStatement
+                    ("SELECT count(*) FROM employee e WHERE e.unit_id=?");
+            statement.setInt(1,id_unit);
+            ResultSet set = statement.executeQuery();
+
+            while (set.next()){
+                System.out.println(name + ":" + set.getInt(1));
+            }
             connection.close();
         } catch (SQLException exception) {
             exception.printStackTrace();

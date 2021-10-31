@@ -10,9 +10,11 @@ public class Main {
         /*UnitDao unitDao = new UnitDao();
         String u = unitDao.findById(1);
         System.out.println(u);*/
-        EmployeeDao employeeDao = new EmployeeDao();
+       /* EmployeeDao employeeDao = new EmployeeDao();
         String s  = employeeDao.findByFamily("zamani").getEmployeeFamily();
-        employeeDao.updateFamily(s,"samiei");
+        employeeDao.updateFamily(s,"samiei");*/
+        EmployeeDao dao = new EmployeeDao();
+        dao.countPerUnit("edari");
 
 
     }
