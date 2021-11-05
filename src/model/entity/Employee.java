@@ -65,7 +65,7 @@ public class Employee {
                 ", employeeFamily='" + employeeFamily + '\'' +
                 ", employeeCode='" + employeeCode + '\'' +
                 ", birthDate='" + birthDate + '\'' +
-                ", unit=" + unit.getUnitName() +
+                ", unit= '" + unit.getUnitName() + '\'' +
                 '}';
     }
 }

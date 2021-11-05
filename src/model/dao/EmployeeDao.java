@@ -1,10 +1,12 @@
 package model.dao;
 
+import com.sun.xml.internal.messaging.saaj.packaging.mime.util.LineInputStream;
 import model.entity.ConnectionManager;
 import model.entity.Employee;
 import model.entity.Unit;
 
 import java.sql.*;
+import java.util.List;
 
 public class EmployeeDao {
     private UnitDao unitDao = new UnitDao();
@@ -187,7 +189,7 @@ public class EmployeeDao {
     public void deleteByCode(String code){
         Connection connection = ConnectionManager.getConnection();
         try {
-            PreparedStatement statement = connection.prepareStatement("DELETE FROM `employee` As e WHERE e.code = ?");
+            PreparedStatement statement = connection.prepareStatement("DELETE FROM `employee`  WHERE code = ?");
             statement.setString(1,code);
             int i = statement.executeUpdate();
             System.out.println(i + " employee deleted");
@@ -216,4 +218,5 @@ public class EmployeeDao {
             exception.printStackTrace();
         }
     }
+
 }

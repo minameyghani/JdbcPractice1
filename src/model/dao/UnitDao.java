@@ -7,8 +7,8 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
 
 public class UnitDao {
     public void saveUnit(Unit unit){
@@ -46,6 +46,28 @@ public class UnitDao {
         }
         return null;
     }
+
+    public Unit findUnitById(Integer id){
+        Connection connection = ConnectionManager.getConnection();
+        Unit u = new Unit();
+        try {
+            PreparedStatement statement = connection.prepareStatement("SELECT * FROM `unit` AS u WHERE u.id = ?");
+            statement.setInt(1,id);
+            ResultSet result = statement.executeQuery();
+            while (result.next()){
+                u.setId_unit(result.getInt(1));
+                u.setUnitName(result.getString(2));
+                u.setPhoneNumber(result.getString(3));
+            }
+            connection.close();
+            return u;
+
+        } catch (SQLException exception) {
+            exception.printStackTrace();
+        }
+        return null;
+    }
+
     public String findById(Integer unitId){
         Connection connection = ConnectionManager.getConnection();
         Unit u = new Unit();
@@ -65,5 +87,19 @@ public class UnitDao {
         }
         return null;
     }
-
+    public void findAll(){
+        Connection connection = ConnectionManager.getConnection();
+        List<Unit> units = new ArrayList<>();
+        try {
+            PreparedStatement statement = connection.prepareStatement("SELECT * from unit");
+            ResultSet result = statement.executeQuery();
+            System.out.println("id"+"\t"+"name");
+            while (result.next()){
+                System.out.println(""+result.getInt("id")+"\t"+result.getString("name"));
+            }
+            connection.close();
+        } catch (SQLException exception) {
+            exception.printStackTrace();
+        }
+    }
 }
